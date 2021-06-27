@@ -1,15 +1,27 @@
-## Parser
-- lookUpTag
+### Parser
+- Data
+    - Column names list which will be used to generate key name for lookup
+    - Key name of tag
+- Methods
+    - lookUpTag
 
-## TagStore
-- init
-- readTagByKey
+### TagStore
+- Data
+    - File path which is used to be loaded for initilization
+    - Column name which is for reading the tag value
+- Methods
+    - init
+    - readTagByKey
 
-## Processor
-- read
-- process
-- write
+### Processor
+- Data
+- Methods
+    - read
+    - process
+    - write
 
-## CSVFileOperator
-- read
-- write
+### CSVFileOperator
+- Data
+- Methods
+    - read
+    - write
