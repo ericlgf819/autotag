@@ -17,7 +17,7 @@ type CSVProcessorTestSuite struct {
 
 type mockReader struct{}
 
-func (r *mockReader) Get(key string) (string, error) {
+func (*mockReader) Get(key string) (string, error) {
 	if key == "test1|test2|" {
 		return "value1", nil
 	}
