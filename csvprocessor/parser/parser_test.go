@@ -15,9 +15,9 @@ type CSVProcessorTestSuite struct {
 	expectedTagName                string
 }
 
-type mockCorrectReader struct{}
+type mockReader struct{}
 
-func (r *mockCorrectReader) Get(key string) (string, error) {
+func (r *mockReader) Get(key string) (string, error) {
 	if key == "test1|test2|" {
 		return "value1", nil
 	}
@@ -37,7 +37,7 @@ func (suite *CSVProcessorTestSuite) SetupTest() {
 	}
 
 	suite.expectedTagName = "value1"
-	Init(new(mockCorrectReader))
+	Init(new(mockReader))
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithCorrectInputPairs() {
