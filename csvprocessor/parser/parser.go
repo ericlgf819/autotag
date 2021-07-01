@@ -14,12 +14,9 @@ func LookupTag(columnsAndValues map[string]string) (string, error) {
 	keyColumnNames := map[string]bool{"testColumn1": true, "testColumn2": true}
 
 	compoundKeyName := ""
-	for _, k := range columnsAndValues {
-		colName := k
-		colValue := columnsAndValues[colName]
-
-		if keyColumnNames[colName] {
-			compoundKeyName += colValue + "|"
+	for k, v := range columnsAndValues {
+		if keyColumnNames[k] {
+			compoundKeyName += v + "|"
 		}
 	}
 

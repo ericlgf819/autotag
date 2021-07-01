@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,11 +14,23 @@ type CSVProcessorTestSuite struct {
 	expectedTagName       string
 }
 
+type mockReader struct{}
+
+func (r *mockReader) Get(key string) (string, error) {
+	if key == "test1|test2|" {
+		return "value1", nil
+	}
+
+	return "", fmt.Errorf("key '%s' does not exist", key)
+}
+
 func (suite *CSVProcessorTestSuite) SetupTest() {
 	suite.inputColumnValuePairs = map[string]string{
-		"": "",
+		"testColumn1": "test1",
+		"testColumn2": "test2",
 	}
-	suite.expectedTagName = ""
+	suite.expectedTagName = "value1"
+	Init(new(mockReader))
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithCorrectInputPairs() {
