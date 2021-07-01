@@ -10,13 +10,14 @@ import (
 
 type CSVProcessorTestSuite struct {
 	suite.Suite
-	inputColumnValuePairs map[string]string
-	expectedTagName       string
+	inputColumnValuePairsCorrectly map[string]string
+	inputColumnValuePairsWrongly   map[string]string
+	expectedTagName                string
 }
 
-type mockReader struct{}
+type mockCorrectReader struct{}
 
-func (r *mockReader) Get(key string) (string, error) {
+func (r *mockCorrectReader) Get(key string) (string, error) {
 	if key == "test1|test2|" {
 		return "value1", nil
 	}
@@ -25,19 +26,32 @@ func (r *mockReader) Get(key string) (string, error) {
 }
 
 func (suite *CSVProcessorTestSuite) SetupTest() {
-	suite.inputColumnValuePairs = map[string]string{
+	suite.inputColumnValuePairsCorrectly = map[string]string{
 		"testColumn1": "test1",
 		"testColumn2": "test2",
 	}
+
+	suite.inputColumnValuePairsWrongly = map[string]string{
+		"testColumn3": "test1",
+		"testColumn2": "test2",
+	}
+
 	suite.expectedTagName = "value1"
-	Init(new(mockReader))
+	Init(new(mockCorrectReader))
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithCorrectInputPairs() {
-	result, err := LookupTag(suite.inputColumnValuePairs)
+	result, err := LookupTag(suite.inputColumnValuePairsCorrectly)
 
 	assert.NoError(suite.T(), err)
 	assert.Equal(suite.T(), suite.expectedTagName, result)
+}
+
+func (suite *CSVProcessorTestSuite) TestLookupTagWithWrongInputPairs() {
+	result, err := LookupTag(suite.inputColumnValuePairsWrongly)
+
+	assert.Error(suite.T(), err)
+	assert.NotEqual(suite.T(), suite.expectedTagName, result)
 }
 
 func TestCSVProcessorTestSuite(t *testing.T) {
