@@ -10,13 +10,13 @@ func Init(reader ManifestReader) {
 	manifestReader = reader
 }
 
-func LookupTag(colValPairs map[string]string) (string, error) {
+func LookupTag(columnsAndValues map[string]string) (string, error) {
 	keyColumnNames := map[string]bool{"testColumn1": true, "testColumn2": true}
 
 	compoundKeyName := ""
-	for _, k := range colValPairs {
+	for _, k := range columnsAndValues {
 		colName := k
-		colValue := colValPairs[colName]
+		colValue := columnsAndValues[colName]
 
 		if keyColumnNames[colName] {
 			compoundKeyName += colValue + "|"
