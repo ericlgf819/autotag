@@ -10,13 +10,18 @@ func Init(reader ManifestReader) {
 	manifestReader = reader
 }
 
-func LookupTag(columnsAndValues map[string]string) (string, error) {
+type ColumnValuePair struct {
+	column string
+	value  string
+}
+
+func LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
 	keyColumnNames := map[string]bool{"testColumn1": true, "testColumn2": true}
 
 	compoundKeyName := ""
-	for k, v := range columnsAndValues {
-		if keyColumnNames[k] {
-			compoundKeyName += v + "|"
+	for _, pair := range columnsAndValues {
+		if keyColumnNames[pair.column] {
+			compoundKeyName += pair.value + "|"
 		}
 	}
 

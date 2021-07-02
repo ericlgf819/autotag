@@ -10,8 +10,8 @@ import (
 
 type CSVProcessorTestSuite struct {
 	suite.Suite
-	inputColumnValuePairsCorrectly map[string]string
-	inputColumnValuePairsWrongly   map[string]string
+	inputColumnValuePairsCorrectly []ColumnValuePair
+	inputColumnValuePairsWrongly   []ColumnValuePair
 	expectedTagName                string
 }
 
@@ -26,14 +26,14 @@ func (*mockReader) Get(key string) (string, error) {
 }
 
 func (suite *CSVProcessorTestSuite) SetupTest() {
-	suite.inputColumnValuePairsCorrectly = map[string]string{
-		"testColumn1": "test1",
-		"testColumn2": "test2",
+	suite.inputColumnValuePairsCorrectly = []ColumnValuePair{
+		{"testColumn1", "test1"},
+		{"testColumn2", "test2"},
 	}
 
-	suite.inputColumnValuePairsWrongly = map[string]string{
-		"testColumn3": "test1",
-		"testColumn2": "test2",
+	suite.inputColumnValuePairsWrongly = []ColumnValuePair{
+		{"testColumn3", "test1"},
+		{"testColumn2", "test2"},
 	}
 
 	suite.expectedTagName = "value1"
