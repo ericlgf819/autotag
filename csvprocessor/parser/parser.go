@@ -4,15 +4,13 @@ type ManifestReader interface {
 	Get(key string) (string, error)
 }
 
-var manifestReader ManifestReader
-
-func Init(reader ManifestReader) {
-	manifestReader = reader
-}
-
 type ColumnValuePair struct {
 	column string
 	value  string
+}
+
+func Init(reader ManifestReader) {
+	manifestReader = reader
 }
 
 func LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
@@ -27,3 +25,5 @@ func LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
 
 	return manifestReader.Get(compoundKeyName)
 }
+
+var manifestReader ManifestReader
