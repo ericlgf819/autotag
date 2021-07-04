@@ -10,20 +10,20 @@ type ColumnValuePair struct {
 }
 
 type Parser interface {
-	SetManifestReader(reader ManifestReader)
-	GetManifestReader() ManifestReader
+	Init(reader ManifestReader)
 	LookupTag(columnsAndValues []ColumnValuePair) (string, error)
+	getManifestReader() ManifestReader
 }
 
 type AzureCSVParser struct {
 	manifestReader ManifestReader
 }
 
-func (parser *AzureCSVParser) SetManifestReader(reader ManifestReader) {
+func (parser *AzureCSVParser) Init(reader ManifestReader) {
 	parser.manifestReader = reader
 }
 
-func (parser *AzureCSVParser) GetManifestReader() ManifestReader {
+func (parser *AzureCSVParser) getManifestReader() ManifestReader {
 	return parser.manifestReader
 }
 
@@ -37,5 +37,5 @@ func (parser *AzureCSVParser) LookupTag(columnsAndValues []ColumnValuePair) (str
 		}
 	}
 
-	return parser.GetManifestReader().Get(compoundKeyName)
+	return parser.getManifestReader().Get(compoundKeyName)
 }

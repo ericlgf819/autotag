@@ -40,7 +40,7 @@ func (suite *CSVProcessorTestSuite) SetupTest() {
 	suite.expectedTagName = "value1"
 	suite.target = new(AzureCSVParser)
 
-	suite.target.SetManifestReader(new(mockReader))
+	suite.target.Init(new(mockReader))
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithCorrectInputPairs() {
