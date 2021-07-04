@@ -13,6 +13,7 @@ type CSVProcessorTestSuite struct {
 	inputColumnValuePairsCorrectly []ColumnValuePair
 	inputColumnValuePairsWrongly   []ColumnValuePair
 	expectedTagName                string
+	target                         *AzureCSVParser
 }
 
 type mockReader struct{}
@@ -37,18 +38,20 @@ func (suite *CSVProcessorTestSuite) SetupTest() {
 	}
 
 	suite.expectedTagName = "value1"
-	Init(new(mockReader))
+	suite.target = new(AzureCSVParser)
+
+	suite.target.SetManifestReader(new(mockReader))
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithCorrectInputPairs() {
-	result, err := LookupTag(suite.inputColumnValuePairsCorrectly)
+	result, err := suite.target.LookupTag(suite.inputColumnValuePairsCorrectly)
 
 	assert.NoError(suite.T(), err)
 	assert.Equal(suite.T(), suite.expectedTagName, result)
 }
 
 func (suite *CSVProcessorTestSuite) TestLookupTagWithWrongInputPairs() {
-	result, err := LookupTag(suite.inputColumnValuePairsWrongly)
+	result, err := suite.target.LookupTag(suite.inputColumnValuePairsWrongly)
 
 	assert.Error(suite.T(), err)
 	assert.NotEqual(suite.T(), suite.expectedTagName, result)

@@ -9,11 +9,25 @@ type ColumnValuePair struct {
 	value  string
 }
 
-func Init(reader ManifestReader) {
-	manifestReader = reader
+type Parser interface {
+	SetManifestReader(reader ManifestReader)
+	GetManifestReader() ManifestReader
+	LookupTag(columnsAndValues []ColumnValuePair) (string, error)
 }
 
-func LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
+type AzureCSVParser struct {
+	manifestReader ManifestReader
+}
+
+func (parser *AzureCSVParser) SetManifestReader(reader ManifestReader) {
+	parser.manifestReader = reader
+}
+
+func (parser *AzureCSVParser) GetManifestReader() ManifestReader {
+	return parser.manifestReader
+}
+
+func (parser *AzureCSVParser) LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
 	keyColumnNames := map[string]bool{"testColumn1": true, "testColumn2": true}
 
 	compoundKeyName := ""
@@ -23,7 +37,5 @@ func LookupTag(columnsAndValues []ColumnValuePair) (string, error) {
 		}
 	}
 
-	return manifestReader.Get(compoundKeyName)
+	return parser.GetManifestReader().Get(compoundKeyName)
 }
-
-var manifestReader ManifestReader
