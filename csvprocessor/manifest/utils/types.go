@@ -1,5 +1,5 @@
 package csvreader
 
 type SimpleCSVReader struct {
-	delimiter string
+	delimiter int32
 }
