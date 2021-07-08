@@ -14,7 +14,7 @@ type SimpleCSVReaderTestSuite struct {
 }
 
 func (suite *SimpleCSVReaderTestSuite) SetupTest() {
-	suite.testFilePath = ""
+	suite.testFilePath = "./csvtestingfile.csv"
 	suite.target = new(SimpleCSVReader)
 }
 
