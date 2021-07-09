@@ -9,12 +9,6 @@ type ColumnValuePair struct {
 	value  string
 }
 
-type Parser interface {
-	Init(reader ManifestReader)
-	LookupTag(columnsAndValues []ColumnValuePair) (string, error)
-	getManifestReader() ManifestReader
-}
-
 type AzureCSVParser struct {
 	manifestReader ManifestReader
 }
