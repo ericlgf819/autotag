@@ -7,4 +7,5 @@ type AzureTagReader interface {
 type SimpleManifestReader struct {
 	sourceFilePath string
 	azureTagReader AzureTagReader
+	tagDataStore   map[string]string
 }
