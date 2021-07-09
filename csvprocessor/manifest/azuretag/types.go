@@ -1,15 +1,15 @@
 package azuretagcsvreader
 
+type AzureTagCSVDecoratorReader struct {
+	CSVFileReader CSVReader
+}
+
 type CSVReader interface {
 	ReadFile(path string) ([][]string, error)
 }
 
-type AzureTagReader interface {
+type AzureTagCSVReader interface {
 	ReadFile(path string) (map[string]string, error)
 	Init(reader CSVReader)
 	getCSVReader() CSVReader
-}
-
-type AzureTagCSVDecoratorReader struct {
-	CSVFileReader CSVReader
 }
