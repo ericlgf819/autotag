@@ -1,4 +1,4 @@
-module erictest.com/test
+module erichomework.com/azuretagprocessor
 
 go 1.16
 
