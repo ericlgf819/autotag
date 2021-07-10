@@ -1,4 +1,4 @@
-module erichomework.com/azuretagprocessor
+module github.com/ericlgf819/autotag
 
 go 1.16
 
