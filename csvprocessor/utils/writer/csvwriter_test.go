@@ -18,10 +18,14 @@ func (suite *SimpleCSVWriterTestSuite) SetupTest() {
 	suite.target = new(SimpleCSVWriter)
 }
 
-func (suite *SimpleCSVWriterTestSuite) TestWriteFileWithoutError() {
-
-	assert.NotNil(suite.T(), nil)
+func (suite *SimpleCSVWriterTestSuite) TestWriteThrowErrorIfFileNotExist() {
+	err := suite.target.AppendColumn(suite.testFilePath, "", 0)
+	assert.NotNil(suite.T(), err)
 }
+
+// func (suite *SimpleCSVWriterTestSuite) TestWriteNewColumnInTheTailOfSpecificLine() {
+// 	assert.NotNil(suite.T(), nil)
+// }
 
 func TestSimpleCSVWriterTestSuite(t *testing.T) {
 	suite.Run(t, new(SimpleCSVWriterTestSuite))
