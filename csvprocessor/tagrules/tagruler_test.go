@@ -67,7 +67,7 @@ func (suite *TagRulerTestSuite) TestMakeRulesWithNormalOutputRow() {
 	suite.target.MakeRules()
 	suite.target.StoreRules()
 
-	assert.Equal(suite.T(), "hello|world", suite.calculatedData[1][0])
+	assert.Equal(suite.T(), "hello|world|", suite.calculatedData[1][0])
 	assert.Equal(suite.T(), "i'm row0 value", suite.calculatedData[1][1])
 }
 
