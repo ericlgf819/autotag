@@ -25,7 +25,7 @@ func (suite *SimpleCSVWriterTestSuite) SetupTest() {
 	suite.target = new(SimpleCSVWriter)
 }
 
-func (suite *SimpleCSVWriterTestSuite) TearDownTestSuite() {
+func (suite *SimpleCSVWriterTestSuite) TearDownSuite() {
 	os.Remove(suite.testFilePath)
 }
 
