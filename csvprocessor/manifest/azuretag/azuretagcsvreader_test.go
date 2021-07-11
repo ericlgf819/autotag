@@ -19,8 +19,8 @@ type MockerCSVReader struct{}
 func (*MockerCSVReader) ReadFile(string) ([][]string, error) {
 	return [][]string{
 			{"TCol0", "TCol1", tagrules.TagKeyName, "TCol2", tagrules.TagValueName},
-			{"TRow0Col0", "TRow0Col1", "testColumn1|testColumn2|", "TRow0Col2", "TRow0Col3TagValue"},
-			{"TRow1Col0", "TRow1Col1", "testColumn2|testColumn1|", "TRow1Col2", "TRow1Col3TagValue"},
+			{"TRow0Col0", "TRow0Col1", "testColumn1|testColumn2", "TRow0Col2", "TRow0Col3TagValue"},
+			{"TRow1Col0", "TRow1Col1", "testColumn2|testColumn1", "TRow1Col2", "TRow1Col3TagValue"},
 		},
 		nil
 }
