@@ -4,6 +4,8 @@ type TagProcessor struct {
 	reader ContentReader
 	writer ContentWriter
 	parser TagParser
+
+	tagColumnName string
 }
 
 type ColumnValuePair struct {
