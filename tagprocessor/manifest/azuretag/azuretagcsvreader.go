@@ -3,7 +3,7 @@ package azuretagcsvreader
 import (
 	"errors"
 
-	"github.com/ericlgf819/autotag/csvprocessor/tagrules"
+	"github.com/ericlgf819/autotag/tagprocessor/tagrules"
 )
 
 func (azReader *AzureTagCSVDecoratorReader) Init(reader CSVReader) {

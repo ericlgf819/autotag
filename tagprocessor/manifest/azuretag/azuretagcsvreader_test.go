@@ -3,7 +3,7 @@ package azuretagcsvreader
 import (
 	"testing"
 
-	"github.com/ericlgf819/autotag/csvprocessor/tagrules"
+	"github.com/ericlgf819/autotag/tagprocessor/tagrules"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
