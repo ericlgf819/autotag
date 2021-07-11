@@ -48,5 +48,41 @@ func (tagRuler *TagRuler) loadRawData() error {
 }
 
 func (tagRuler *TagRuler) makeRulesInternally() error {
+	tagRuler.makeOutputHeader()
+
+	for _, dic := range tagRuler.rawRuleData {
+		if validateRowMapItem(dic, tagRuler.ruleColumnNames, tagRuler.ruleResultName) {
+			tagRuler.makeOutputRow(dic)
+		}
+	}
 	return nil
+}
+
+func (tagRuler *TagRuler) makeOutputHeader() {
+	tagRuler.calculatedRuleData =
+		append(
+			[][]string{},
+			[]string{tagRuler.ruleOutputColumnName, tagRuler.ruleOutputResultName})
+}
+
+func (tagRuler *TagRuler) makeOutputRow(rawDic map[string]string) {
+	tagKey := ""
+	for _, colName := range tagRuler.ruleColumnNames {
+		tagKey = rawDic[colName] + "|" + tagKey
+	}
+	tagValue := rawDic[tagRuler.ruleResultName]
+
+	tagRuler.calculatedRuleData =
+		append(tagRuler.calculatedRuleData,
+			[]string{tagKey, tagValue})
+}
+
+func validateRowMapItem(dic map[string]string, ruleColumnNames []string, ruleResultName string) bool {
+	for _, colName := range ruleColumnNames {
+		if dic[colName] == "" {
+			return false
+		}
+	}
+
+	return dic[ruleResultName] != ""
 }
