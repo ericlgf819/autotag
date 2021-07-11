@@ -1,5 +1,7 @@
 package tagrules
 
+import "errors"
+
 // TODO...
 func (tagRuler *TagRuler) InitRulesByDefault() {
 	tagRuler.ruleColumnNames = []string{
@@ -34,6 +36,14 @@ func (tagRuler *TagRuler) MakeRules() error {
 
 	err = tagRuler.makeRulesInternally()
 	return err
+}
+
+func (tagRuler *TagRuler) StoreRules() error {
+	if tagRuler.calculatedRuleData == nil {
+		return errors.New("call MakeRules() before StoreRules()")
+	}
+
+	return tagRuler.ruleDataWriter.StoreRuleData(tagRuler.calculatedRuleData)
 }
 
 func (tagRuler *TagRuler) loadRawData() error {
