@@ -1,9 +1,9 @@
 package tagprocessor
 
 type TagProcessor struct {
-	csvReader CSVReader
-	csvWriter CSVWriter
-	parser    Parser
+	reader ContentReader
+	writer ContentWriter
+	parser TagParser
 }
 
 type ColumnValuePair struct {
@@ -11,14 +11,14 @@ type ColumnValuePair struct {
 	Value  string
 }
 
-type CSVReader interface {
+type ContentReader interface {
 	ReadFile(path string) ([][]string, error)
 }
 
-type CSVWriter interface {
+type ContentWriter interface {
 	WriteFile(path string, content [][]string) error
 }
 
-type Parser interface {
+type TagParser interface {
 	LookupTag(columnsAndValues []ColumnValuePair) (string, error)
 }
