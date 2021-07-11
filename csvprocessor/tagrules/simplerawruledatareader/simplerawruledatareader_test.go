@@ -35,6 +35,7 @@ func (suite *SimpleRawRuleDataReaderTestSuite) TestLoadFile() {
 	err := suite.target.LoadFile("mockFilePath")
 
 	assert.Nil(suite.T(), err)
+	assert.Equal(suite.T(), len(suite.mockFileContent), len(suite.target.fileContent))
 }
 
 func TestSimpleRawRuleDataReaderTestSuite(t *testing.T) {
