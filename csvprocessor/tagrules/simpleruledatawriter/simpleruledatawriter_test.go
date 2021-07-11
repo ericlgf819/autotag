@@ -13,8 +13,15 @@ type SimpleRuleDataWriterTestSuite struct {
 	contentToStore [][]string
 }
 
+type MockCSVFileWriter struct{}
+
+func (*MockCSVFileWriter) WriteFile(path string, content [][]string) error {
+	return nil
+}
+
 func (suite *SimpleRuleDataWriterTestSuite) SetupTest() {
 	suite.target = new(SimpleRuleDataWriter)
+	suite.target.Init("mockpath", new(MockCSVFileWriter))
 }
 
 func (suite *SimpleRuleDataWriterTestSuite) TestStoreRuleDataNormally() {
