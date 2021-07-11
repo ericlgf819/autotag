@@ -78,7 +78,11 @@ func (tagRuler *TagRuler) makeOutputHeader() {
 func (tagRuler *TagRuler) makeOutputRow(rawDic map[string]string) {
 	tagKey := ""
 	for _, colName := range tagRuler.ruleColumnNames {
-		tagKey = rawDic[colName] + "|" + tagKey
+		if tagKey == "" {
+			tagKey = rawDic[colName]
+		} else {
+			tagKey = tagKey + "|" + rawDic[colName]
+		}
 	}
 	tagValue := rawDic[tagRuler.ruleResultName]
 
