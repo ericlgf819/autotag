@@ -29,13 +29,14 @@ func (*mockReader) Get(key string) (string, error) {
 
 func (suite *CSVProcessorTestSuite) SetupTest() {
 	suite.inputColumnValuePairsCorrectly = []tagprocessor.ColumnValuePair{
-		{"testColumn1", "test1"},
-		{"testColumn2", "test2"},
+
+		{Column: "testColumn1", Value: "test1"},
+		{Column: "testColumn2", Value: "test2"},
 	}
 
 	suite.inputColumnValuePairsWrongly = []tagprocessor.ColumnValuePair{
-		{"testColumn3", "test1"},
-		{"testColumn2", "test2"},
+		{Column: "testColumn3", Value: "test1"},
+		{Column: "testColumn2", Value: "test2"},
 	}
 
 	suite.expectedTagName = "value1"
