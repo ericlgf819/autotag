@@ -3,7 +3,7 @@ package tagrules
 import "errors"
 
 // TODO...
-func (tagRuler *TagRuler) InitRulesByDefault() {
+func (tagRuler *TagRuler) InitRulesConditionsByDefault() {
 	tagRuler.ruleColumnNames = []string{
 		"col1",
 		"col2",
@@ -16,7 +16,7 @@ func (tagRuler *TagRuler) InitRulesByDefault() {
 	tagRuler.ruleOutputResultName = TagValueName
 }
 
-func (tagRuler *TagRuler) InitRules(colNames []string, tagetColName string, outputColumnName string, outputResultName string) {
+func (tagRuler *TagRuler) InitRuleConditions(colNames []string, tagetColName string, outputColumnName string, outputResultName string) {
 	tagRuler.ruleColumnNames = colNames
 	tagRuler.ruleResultName = tagetColName
 	tagRuler.ruleOutputColumnName = outputColumnName

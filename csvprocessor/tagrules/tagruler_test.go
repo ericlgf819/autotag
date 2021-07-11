@@ -45,7 +45,7 @@ func (suite *TagRulerTestSuite) SetupTest() {
 	reader := new(MockRawRuleDataReader)
 
 	suite.target.Init(reader, writer)
-	suite.target.InitRules(
+	suite.target.InitRuleConditions(
 		[]string{"col1", "col2"}, "col3",
 		"TagName", "TagValue")
 }
