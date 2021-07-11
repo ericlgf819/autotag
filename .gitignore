@@ -1,3 +1,4 @@
 *.exe
 .vscode/
 *.swp
+csvprocessor/utils/csvwriter/csvtestingfile.csv
