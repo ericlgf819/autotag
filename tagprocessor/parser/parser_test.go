@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/ericlgf819/autotag/tagprocessor"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
 
 type CSVProcessorTestSuite struct {
 	suite.Suite
-	inputColumnValuePairsCorrectly []ColumnValuePair
-	inputColumnValuePairsWrongly   []ColumnValuePair
+	inputColumnValuePairsCorrectly []tagprocessor.ColumnValuePair
+	inputColumnValuePairsWrongly   []tagprocessor.ColumnValuePair
 	expectedTagName                string
 	target                         *AzureCSVParser
 }
@@ -27,12 +28,12 @@ func (*mockReader) Get(key string) (string, error) {
 }
 
 func (suite *CSVProcessorTestSuite) SetupTest() {
-	suite.inputColumnValuePairsCorrectly = []ColumnValuePair{
+	suite.inputColumnValuePairsCorrectly = []tagprocessor.ColumnValuePair{
 		{"testColumn1", "test1"},
 		{"testColumn2", "test2"},
 	}
 
-	suite.inputColumnValuePairsWrongly = []ColumnValuePair{
+	suite.inputColumnValuePairsWrongly = []tagprocessor.ColumnValuePair{
 		{"testColumn3", "test1"},
 		{"testColumn2", "test2"},
 	}
