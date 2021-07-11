@@ -21,3 +21,6 @@ type RawRuleDataReader interface {
 type RuleDataWriter interface {
 	StoreRuleData([][]string) error
 }
+
+var TagKeyName = "TagKeys"
+var TagValueName = "TagValues"

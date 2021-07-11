@@ -1,6 +1,10 @@
 package azuretagcsvreader
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/ericlgf819/autotag/csvprocessor/tagrules"
+)
 
 func (azReader *AzureTagCSVDecoratorReader) Init(reader CSVReader) {
 	azReader.CSVFileReader = reader
@@ -11,8 +15,8 @@ func (azReader *AzureTagCSVDecoratorReader) getCSVReader() CSVReader {
 }
 
 func (azReader *AzureTagCSVDecoratorReader) ReadFile(path string) (map[string]string, error) {
-	tagKeyColumnName := "TagKeys"
-	tagValueColumnName := "TagValues"
+	tagKeyColumnName := tagrules.TagKeyName
+	tagValueColumnName := tagrules.TagValueName
 
 	fileCsvTableContent, err := getCsvfileInTable(path, azReader.getCSVReader())
 

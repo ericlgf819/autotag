@@ -12,8 +12,8 @@ func (tagRuler *TagRuler) InitRulesByDefault() {
 
 	tagRuler.ruleResultName = "col4"
 
-	tagRuler.ruleOutputColumnName = "outputColumn"
-	tagRuler.ruleOutputResultName = "outputValue"
+	tagRuler.ruleOutputColumnName = TagKeyName
+	tagRuler.ruleOutputResultName = TagValueName
 }
 
 func (tagRuler *TagRuler) InitRules(colNames []string, tagetColName string, outputColumnName string, outputResultName string) {
