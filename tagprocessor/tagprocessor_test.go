@@ -69,26 +69,32 @@ func (suite *TagProcessorTestSuite) TestProcessNormally() {
 	err := suite.target.Process("mockInputPath", "mockOutputPath")
 
 	assert.Nil(suite.T(), err)
-	assert.True(suite.T(), arrEqual(suite.actualOutputContent, suite.expectedOutputContent))
+
+	var isEqual bool
+	isEqual, err = arrEqual(suite.actualOutputContent, suite.expectedOutputContent)
+	assert.True(suite.T(), isEqual, err.Error())
 }
 
-func arrEqual(source, dest [][]string) bool {
+func arrEqual(source, dest [][]string) (bool, error) {
 	if len(source) != len(dest) {
-		return false
+		return false, errors.New("table rows not equal")
 	}
 
 	for rowIndex := range source {
 		if len(source[rowIndex]) != len(dest[rowIndex]) {
-			return false
+			return false, fmt.Errorf("row %d, columns number not equal", rowIndex)
 		}
 
 		for colIndex := range source[rowIndex] {
 			if len(source[rowIndex][colIndex]) != len(dest[rowIndex][colIndex]) {
-				return false
+				return false,
+					fmt.Errorf(
+						"Cell(%d, %d) value not equal. Source is %s, Dest is %s",
+						rowIndex, colIndex, source[rowIndex][colIndex], dest[rowIndex][colIndex])
 			}
 		}
 	}
-	return true
+	return true, nil
 }
 
 func TestTagProcessorTestSuite(t *testing.T) {
