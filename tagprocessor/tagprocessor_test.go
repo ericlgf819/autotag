@@ -60,8 +60,8 @@ func (suite *TagProcessorTestSuite) SetupTest() {
 	}
 	suite.expectedOutputContent = [][]string{
 		{"col0", "col1", "col2", "col3", "Tag"},
-		{"hello", "world", "good", "morning", "good"},
-		{"nice", "to", "see", "you", "job"},
+		{"hello", "world", "good", "morning", "GOOD"},
+		{"nice", "to", "see", "you", "JOB"},
 	}
 }
 
