@@ -38,11 +38,11 @@ func (mock *MockReaderWriterParser) LookupTag(columnsAndValues []ColumnValuePair
 	compoundValue := fmt.Sprintf("%s|%s", columnsAndValues[1].Value, columnsAndValues[3].Value)
 
 	if compoundValue == "world|morning" {
-		return "good", nil
+		return "GOOD", nil
 	}
 
 	if compoundValue == "to|you" {
-		return "job", nil
+		return "JOB", nil
 	}
 
 	return "", errors.New("not found")
