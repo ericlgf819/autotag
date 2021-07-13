@@ -46,9 +46,9 @@ func checkContentTableEmpty(contentTable [][]string) error {
 
 func convertArrayRowToColumnValuePairs(header []string, contentRows [][]string) [][]ColumnValuePair {
 	result := [][]ColumnValuePair{}
-	row := []ColumnValuePair{}
 
 	for _, contentRow := range contentRows {
+		var row = []ColumnValuePair{}
 		for index := range header {
 			cell := ColumnValuePair{Column: header[index], Value: contentRow[index]}
 			row = append(row, cell)

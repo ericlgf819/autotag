@@ -72,7 +72,13 @@ func (suite *TagProcessorTestSuite) TestProcessNormally() {
 
 	var isEqual bool
 	isEqual, err = arrEqual(suite.actualOutputContent, suite.expectedOutputContent)
-	assert.True(suite.T(), isEqual, err.Error())
+
+	var errMsg = ""
+	if nil != err {
+		errMsg = err.Error()
+	}
+
+	assert.True(suite.T(), isEqual, errMsg)
 }
 
 func arrEqual(source, dest [][]string) (bool, error) {
