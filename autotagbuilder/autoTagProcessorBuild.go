@@ -7,7 +7,7 @@ import (
 	"github.com/ericlgf819/autotag/tagprocessor/parser"
 )
 
-func BuildProcessorRuler() *tagprocessor.TagProcessor {
+func BuildProcessor() *tagprocessor.TagProcessor {
 	processor := new(tagprocessor.TagProcessor)
 	processor.Init(buildCsvReader(), buildCsvWriter(), buildTagParser())
 	return processor
