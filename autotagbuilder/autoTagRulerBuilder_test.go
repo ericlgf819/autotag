@@ -7,19 +7,19 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-type AutoTagBuilderTestSuite struct {
+type AutoTagRulerBuilderTestSuite struct {
 	suite.Suite
 }
 
-func (suite *AutoTagBuilderTestSuite) SetupTest() {
+func (suite *AutoTagRulerBuilderTestSuite) SetupTest() {
 
 }
 
-func (suite *AutoTagBuilderTestSuite) TestBuilderWithNoNil() {
+func (suite *AutoTagRulerBuilderTestSuite) TestBuilderWithNoNil() {
 	tagRuler := BuildTagRuler()
 	assert.NotNil(suite.T(), tagRuler)
 }
 
-func TestAutoTagBuilderTestSuite(t *testing.T) {
-	suite.Run(t, new(AutoTagBuilderTestSuite))
+func TestAutoTagRulerBuilderTestSuite(t *testing.T) {
+	suite.Run(t, new(AutoTagRulerBuilderTestSuite))
 }
